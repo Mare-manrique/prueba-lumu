@@ -29,7 +29,7 @@ public class main {
       palabras=archivo.getCountPalabras();
         listPalabras=archivo.getPalabras();
 
-        String[][] histograma = new String[lineas][palabras];
+        String[][] histograma;
 
        histograma=archivo.getHistograma(listPalabras);
        String print= archivo.printHistograma(histograma);

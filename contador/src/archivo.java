@@ -22,6 +22,8 @@ import java.util.stream.Collectors;
  *
  * @author Maria Angelica Espitia Manrique
  */
+
+
 public class archivo {
 
     private File fichero;
