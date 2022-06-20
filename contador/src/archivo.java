@@ -196,7 +196,6 @@ public class archivo {
         return listOrder;
     }
 
-
     public String printHistograma(String[][] matrizHistograma){
 
         String print=" ";

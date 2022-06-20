@@ -31,9 +31,11 @@ public class main {
 
         String[][] histograma;
 
+
        histograma=archivo.getHistograma(listPalabras);
        String print= archivo.printHistograma(histograma);
-      caracteres=archivo.getCaracteres();
+       caracteres=archivo.getCaracteres();
+
 
         System.out.println("numero de lineas:  "+lineas);
         System.out.println("cantidad de palabras:  "+palabras);
