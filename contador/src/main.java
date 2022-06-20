@@ -15,31 +15,31 @@ public class main {
 
     public static void main (String[] args){
 
-     int lineas=0;
-     int palabras =0;
-     int caracteres=0;
-        ArrayList<String> listPalabras = new ArrayList<String>();
+     int lines=0;
+     int words =0;
+     int characters=0;
+        ArrayList<String> listWord = new ArrayList<String>();
 
 
 
       File texto= new File("contador\\texto.txt");
 
       archivo archivo=new archivo(texto);
-      lineas=archivo.getLineas();
-      palabras=archivo.getCountPalabras();
-        listPalabras=archivo.getPalabras();
+        lines=archivo.getLineas();
+        words=archivo.getCountPalabras();
+        listWord=archivo.getPalabras();
 
         String[][] histograma;
 
 
-       histograma=archivo.getHistograma(listPalabras);
+       histograma=archivo.getHistograma(listWord);
        String print= archivo.printHistograma(histograma);
-       caracteres=archivo.getCaracteres();
+        characters=archivo.getCaracteres();
 
 
-        System.out.println("numero de lineas:  "+lineas);
-        System.out.println("cantidad de palabras:  "+palabras);
-        System.out.println("caracteres:   "+caracteres);
+        System.out.println("numero de lineas:  "+lines);
+        System.out.println("cantidad de palabras:  "+words);
+        System.out.println("caracteres:   "+characters);
         System.out.println("HISTOGRAMAAAAAA....."+print);
 
 

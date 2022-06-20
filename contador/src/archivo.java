@@ -88,21 +88,21 @@ public class archivo {
         return listPalabras;
     }
 
-    public String[][] getHistograma(ArrayList listPalabras) {
+    public String[][] getHistograma(ArrayList listWords) {
 
 
         ArrayList<Integer> listCountWord = new ArrayList<Integer>();
-        ArrayList<Integer> listPosicitionWord = new ArrayList<Integer>();
-        ArrayList<Integer> listPosicitionFinal = new ArrayList<Integer>();
+        ArrayList<Integer> listPositionWord = new ArrayList<Integer>();
+        ArrayList<Integer> listPositionFinal = new ArrayList<Integer>();
         ArrayList<String> listFinal = new ArrayList<String>();
 
 
-        for (int i = 0; i < listPalabras.size(); i++) {
-            listFinal = deleteWord((String) listPalabras.get(i), listPalabras);
+        for (int i = 0; i < listWords.size(); i++) {
+            listFinal = deleteWord(listWords);
         }
 
         for (int i = 0; i < listFinal.size(); i++) {
-            listCountWord.add(getPalabraRepetida(listFinal.get(i), listPalabras));
+            listCountWord.add(getPalabraRepetida(listFinal.get(i), listWords));
         }
 
 
@@ -121,15 +121,15 @@ public class archivo {
             }
         }
 
-        listPosicitionWord.addAll(listCountWord);
-        Collections.sort(listPosicitionWord, Collections.reverseOrder());
+        listPositionWord.addAll(listCountWord);
+        Collections.sort(listPositionWord, Collections.reverseOrder());  //  O(N*log(N))
 
 
-        listPosicitionFinal=getPosicionColumn(listCountWord,listPosicitionWord);
+        listPositionFinal=getPosicionColumn(listCountWord,listPositionWord);
 
-       for(int i=0; i<listPosicitionFinal.size();i++){
-           matrizCopy[0][i]=matrizHistograma[0][listPosicitionFinal.get(i)];
-           matrizCopy[1][i]=matrizHistograma[1][listPosicitionFinal.get(i)];
+       for(int i=0; i<listPositionFinal.size();i++){
+           matrizCopy[0][i]=matrizHistograma[0][listPositionFinal.get(i)];
+           matrizCopy[1][i]=matrizHistograma[1][listPositionFinal.get(i)];
         }
 
 
@@ -137,25 +137,26 @@ public class archivo {
         return matrizCopy;
     }
 
-    public ArrayList<String> deleteWord(String palabra, ArrayList listPalabras) {
+    public ArrayList<String> deleteWord(ArrayList listWords) {
         ArrayList<String> listFinal = new ArrayList<String>();
-        listFinal.addAll(listPalabras);
+        listFinal.addAll(listWords);
 
-        listFinal = (ArrayList<String>) listPalabras.stream().distinct().collect(Collectors.toList());
+        listFinal = (ArrayList<String>) listWords.stream().distinct().collect(Collectors.toList());
 
         return listFinal;
 
     }
 
-    public int getPalabraRepetida(String palabra, ArrayList listPalabras) {
+    public int getPalabraRepetida(String word, ArrayList listWords) {
         int totalCoincidencias = 0;
 
-        for (int i = 0; i < listPalabras.size(); i++) {
-            if (listPalabras.get(i).equals(palabra)) {
+        for (int i = 0; i < listWords.size(); i++) {
+            if (listWords.get(i).equals(word)) {
                 totalCoincidencias++;
 
             }
         }
+
         return totalCoincidencias;
     }
 
@@ -200,11 +201,10 @@ public class archivo {
 
         String print=" ";
 
-
             for (int j = 0; j < matrizHistograma[0].length; j++) {
-                print=print+"\n"+matrizHistograma[0][j] + "          ------ " + matrizHistograma[1][j];
+                print=print+"\n"+matrizHistograma[0][j] +
+                        "          ------ " + matrizHistograma[1][j];
             }
-
 
            return print;
 
